@@ -224,6 +224,81 @@ const articles = [
   }
 ];
 
+const antivirusPrograms = [
+  {
+    id: 1,
+    name: 'Kaspersky Free',
+    description: 'Бесплатный антивирус с базовой защитой от вирусов, троянов и шпионского ПО.',
+    platform: 'Windows, Mac, Android',
+    price: 'Бесплатно',
+    rating: 4.5,
+    features: ['Базовая защита', 'Сканирование в реальном времени', 'Карантин'],
+    downloadUrl: 'https://www.kaspersky.ru/free-antivirus',
+    icon: 'ShieldCheck',
+    color: 'from-green-500 to-emerald-600'
+  },
+  {
+    id: 2,
+    name: 'Avast Free Antivirus',
+    description: 'Популярный бесплатный антивирус с дополнительными функциями защиты.',
+    platform: 'Windows, Mac, Android, iOS',
+    price: 'Бесплатно',
+    rating: 4.3,
+    features: ['Защита от вирусов', 'Проверка Wi-Fi', 'Менеджер паролей'],
+    downloadUrl: 'https://www.avast.ru/free-antivirus-download',
+    icon: 'Shield',
+    color: 'from-orange-500 to-red-600'
+  },
+  {
+    id: 3,
+    name: 'Microsoft Defender',
+    description: 'Встроенный антивирус Windows с отличной защитой и нулевой нагрузкой.',
+    platform: 'Windows 10/11',
+    price: 'Встроен в Windows',
+    rating: 4.4,
+    features: ['Встроенная защита', 'Облачная защита', 'Родительский контроль'],
+    downloadUrl: 'https://www.microsoft.com/windows/comprehensive-security',
+    icon: 'Lock',
+    color: 'from-blue-500 to-cyan-600'
+  },
+  {
+    id: 4,
+    name: 'AVG Antivirus Free',
+    description: 'Надёжная защита от вирусов, вредоносных ссылок и небезопасных загрузок.',
+    platform: 'Windows, Mac, Android',
+    price: 'Бесплатно',
+    rating: 4.2,
+    features: ['Антивирус', 'Защита email', 'Защита при скачивании'],
+    downloadUrl: 'https://www.avg.com/ru-ru/free-antivirus-download',
+    icon: 'ShieldAlert',
+    color: 'from-teal-500 to-green-600'
+  },
+  {
+    id: 5,
+    name: 'Bitdefender Antivirus Free',
+    description: 'Мощный антивирус с минимальным влиянием на производительность системы.',
+    platform: 'Windows',
+    price: 'Бесплатно',
+    rating: 4.6,
+    features: ['Антивирус', 'Антишпион', 'Защита в реальном времени'],
+    downloadUrl: 'https://www.bitdefender.ru/solutions/free.html',
+    icon: 'ShieldCheck',
+    color: 'from-red-500 to-pink-600'
+  },
+  {
+    id: 6,
+    name: 'Malwarebytes Free',
+    description: 'Специализируется на удалении сложных угроз и рекламного ПО.',
+    platform: 'Windows, Mac, Android, iOS',
+    price: 'Бесплатно (базовая версия)',
+    rating: 4.4,
+    features: ['Удаление malware', 'Сканирование по требованию', 'Карантин'],
+    downloadUrl: 'https://www.malwarebytes.com/mwb-download',
+    icon: 'Bug',
+    color: 'from-purple-500 to-violet-600'
+  }
+];
+
 export default function Index() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -320,7 +395,7 @@ export default function Index() {
         </div>
 
         <Tabs defaultValue="tests" className="space-y-8">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 h-12 bg-card/50 backdrop-blur">
+          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 h-12 bg-card/50 backdrop-blur">
             <TabsTrigger value="tests" className="text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               <Icon name="Brain" size={20} className="mr-2" />
               Тесты
@@ -328,6 +403,10 @@ export default function Index() {
             <TabsTrigger value="articles" className="text-base data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground">
               <Icon name="Newspaper" size={20} className="mr-2" />
               Статьи
+            </TabsTrigger>
+            <TabsTrigger value="antivirus" className="text-base data-[state=active]:bg-accent data-[state=active]:text-accent-foreground">
+              <Icon name="Download" size={20} className="mr-2" />
+              Антивирусы
             </TabsTrigger>
           </TabsList>
 
@@ -494,6 +573,106 @@ export default function Index() {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="antivirus" className="animate-fade-in">
+            <div className="mb-8 text-center">
+              <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Рекомендуемые антивирусы
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+                Надёжная защита вашего компьютера от вирусов, троянов и других угроз
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {antivirusPrograms.map((antivirus, index) => (
+                <Card
+                  key={antivirus.id}
+                  className="group bg-card/80 backdrop-blur border-2 border-border hover:border-accent/50 transition-all duration-300 hover:scale-102 hover:shadow-2xl hover:shadow-accent/20 animate-scale-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <CardHeader>
+                    <div className="flex items-start justify-between mb-4">
+                      <div className={`w-14 h-14 rounded-lg bg-gradient-to-br ${antivirus.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                        <Icon name={antivirus.icon as any} size={28} className="text-white" />
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Icon name="Star" size={18} className="text-yellow-500 fill-yellow-500" />
+                        <span className="font-semibold text-lg">{antivirus.rating}</span>
+                      </div>
+                    </div>
+                    <CardTitle className="text-2xl mb-2 group-hover:text-accent transition-colors">
+                      {antivirus.name}
+                    </CardTitle>
+                    <CardDescription className="text-base leading-relaxed mb-4">
+                      {antivirus.description}
+                    </CardDescription>
+                    
+                    <div className="space-y-3 mb-4">
+                      <div className="flex items-center gap-2 text-sm">
+                        <Icon name="Monitor" size={16} className="text-primary" />
+                        <span className="text-muted-foreground">{antivirus.platform}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Icon name="Wallet" size={16} className="text-secondary" />
+                        <span className="font-semibold text-secondary">{antivirus.price}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {antivirus.features.map((feature, idx) => (
+                        <Badge key={idx} variant="outline" className="text-xs">
+                          {feature}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <a 
+                      href={antivirus.downloadUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <Button 
+                        className="w-full bg-gradient-to-r from-accent to-secondary hover:from-accent/90 hover:to-secondary/90 text-base h-11"
+                      >
+                        <Icon name="Download" size={20} className="mr-2" />
+                        Скачать {antivirus.name}
+                      </Button>
+                    </a>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="mt-12 p-6 bg-muted/30 rounded-xl border-2 border-primary/20 backdrop-blur">
+              <div className="flex items-start gap-4">
+                <Icon name="Info" size={32} className="text-primary flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-xl font-bold mb-2">Важная информация</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <Icon name="CheckCircle2" size={18} className="text-primary flex-shrink-0 mt-0.5" />
+                      <span>Устанавливайте только один антивирус — несколько программ могут конфликтовать</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="CheckCircle2" size={18} className="text-primary flex-shrink-0 mt-0.5" />
+                      <span>Регулярно обновляйте антивирусные базы для защиты от новых угроз</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="CheckCircle2" size={18} className="text-primary flex-shrink-0 mt-0.5" />
+                      <span>Проводите полное сканирование системы минимум раз в неделю</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Icon name="CheckCircle2" size={18} className="text-primary flex-shrink-0 mt-0.5" />
+                      <span>Скачивайте антивирусы только с официальных сайтов производителей</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </TabsContent>
         </Tabs>
