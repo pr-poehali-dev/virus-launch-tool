@@ -299,6 +299,186 @@ const antivirusPrograms = [
   }
 ];
 
+const virusTypes = [
+  {
+    id: 1,
+    name: 'Троянский конь (Trojan)',
+    icon: 'Laptop',
+    color: 'from-red-500 to-rose-600',
+    dangerLevel: 'Высокий',
+    description: 'Маскируется под легитимную программу, но содержит вредоносный код.',
+    howItWorks: 'Попадает на компьютер под видом полезного ПО (игры, утилиты). После запуска открывает злоумышленникам доступ к вашей системе, крадёт пароли, файлы или устанавливает другое вредоносное ПО.',
+    symptoms: [
+      'Компьютер работает медленнее обычного',
+      'Появляются неизвестные программы',
+      'Изменения в настройках без вашего участия',
+      'Странная сетевая активность'
+    ],
+    protection: [
+      'Не скачивайте ПО с непроверенных сайтов',
+      'Проверяйте файлы антивирусом перед запуском',
+      'Обращайте внимание на разрешения при установке',
+      'Используйте файрволл'
+    ],
+    realExample: 'Zeus (Zbot) — один из самых известных банковских троянов, укравший миллионы долларов через кражу банковских данных.'
+  },
+  {
+    id: 2,
+    name: 'Ransomware (Шифровальщик)',
+    icon: 'Lock',
+    color: 'from-orange-500 to-red-600',
+    dangerLevel: 'Критический',
+    description: 'Шифрует ваши файлы и требует выкуп за их восстановление.',
+    howItWorks: 'Проникает через фишинговые письма, вредоносные ссылки или уязвимости в системе. Шифрует все важные файлы (документы, фото, видео) и показывает требование выкупа, обычно в криптовалюте.',
+    symptoms: [
+      'Невозможно открыть свои файлы',
+      'Расширения файлов изменены (.locked, .encrypted)',
+      'Появляется окно с требованием выкупа',
+      'Файлы на рабочем столе заменены на записку'
+    ],
+    protection: [
+      'Регулярно делайте резервные копии на внешний носитель',
+      'Не открывайте подозрительные вложения в email',
+      'Обновляйте систему и ПО',
+      'Используйте антивирус с защитой от ransomware'
+    ],
+    realExample: 'WannaCry (2017) — заразил более 300,000 компьютеров в 150 странах, включая больницы и госучреждения.'
+  },
+  {
+    id: 3,
+    name: 'Spyware (Шпионское ПО)',
+    icon: 'Eye',
+    color: 'from-purple-500 to-violet-600',
+    dangerLevel: 'Высокий',
+    description: 'Тайно следит за вашими действиями и крадёт личную информацию.',
+    howItWorks: 'Устанавливается незаметно и работает в фоновом режиме, записывая нажатия клавиш, делая скриншоты, отслеживая посещённые сайты и крадя пароли, данные банковских карт.',
+    symptoms: [
+      'Браузер открывает неизвестные сайты',
+      'Появляется много рекламы',
+      'Компьютер тормозит без причины',
+      'Изменилась домашняя страница браузера',
+      'Несанкционированные покупки на картах'
+    ],
+    protection: [
+      'Используйте антишпионское ПО',
+      'Проверяйте разрешения приложений',
+      'Не переходите по подозрительным ссылкам',
+      'Регулярно меняйте пароли'
+    ],
+    realExample: 'Pegasus — профессиональное шпионское ПО, используемое для слежки через смартфоны, включая камеру и микрофон.'
+  },
+  {
+    id: 4,
+    name: 'Червь (Worm)',
+    icon: 'GitBranch',
+    color: 'from-yellow-500 to-orange-600',
+    dangerLevel: 'Высокий',
+    description: 'Самостоятельно распространяется по сети, заражая другие компьютеры.',
+    howItWorks: 'Не требует действий пользователя для распространения. Сканирует сеть в поисках уязвимых систем, копирует себя и продолжает заражать другие устройства. Может перегружать сеть и красть данные.',
+    symptoms: [
+      'Сеть работает очень медленно',
+      'Высокая нагрузка на процессор и память',
+      'Массовая рассылка email с вашего адреса',
+      'Файлы дублируются без вашего участия'
+    ],
+    protection: [
+      'Закрывайте неиспользуемые сетевые порты',
+      'Устанавливайте обновления безопасности',
+      'Используйте сложные пароли для сетевых ресурсов',
+      'Настройте правила файрволла'
+    ],
+    realExample: 'ILOVEYOU (2000) — заразил 50 миллионов компьютеров за 10 дней, причинив ущерб в $10 млрд.'
+  },
+  {
+    id: 5,
+    name: 'Adware (Рекламное ПО)',
+    icon: 'MonitorSpeaker',
+    color: 'from-blue-500 to-cyan-600',
+    dangerLevel: 'Средний',
+    description: 'Показывает навязчивую рекламу и собирает данные о вас.',
+    howItWorks: 'Устанавливается вместе с бесплатным ПО. Показывает всплывающие окна, баннеры, перенаправляет на рекламные сайты. Отслеживает ваши интересы для показа таргетированной рекламы.',
+    symptoms: [
+      'Постоянные всплывающие окна с рекламой',
+      'Браузер открывает новые вкладки сам',
+      'Реклама появляется на сайтах без рекламы',
+      'Поисковая система изменилась без вашего согласия'
+    ],
+    protection: [
+      'Читайте условия при установке программ',
+      'Отказывайтесь от дополнительного ПО',
+      'Используйте блокировщик рекламы',
+      'Удаляйте неиспользуемые расширения браузера'
+    ],
+    realExample: 'Fireball — adware, заразивший 250 миллионов компьютеров, захватывая браузеры и показывая рекламу.'
+  },
+  {
+    id: 6,
+    name: 'Rootkit',
+    icon: 'FileWarning',
+    color: 'from-pink-500 to-red-600',
+    dangerLevel: 'Критический',
+    description: 'Скрывает присутствие вредоносного ПО на глубоком уровне системы.',
+    howItWorks: 'Проникает на уровень ядра операционной системы или загрузчика. Скрывает файлы, процессы и сетевые соединения вредоносных программ от антивирусов и пользователя.',
+    symptoms: [
+      'Антивирус не находит угрозы, но проблемы есть',
+      'Система ведёт себя странно',
+      'Невозможно удалить подозрительные процессы',
+      'Изменения в системных файлах'
+    ],
+    protection: [
+      'Включайте Secure Boot в BIOS',
+      'Используйте специализированные сканеры rootkit',
+      'Скачивайте ПО только из официальных источников',
+      'Проверяйте цифровые подписи драйверов'
+    ],
+    realExample: 'Sony BMG Rootkit (2005) — Sony установила rootkit на компакт-диски для защиты от копирования, создав уязвимость.'
+  },
+  {
+    id: 7,
+    name: 'Keylogger (Клавиатурный шпион)',
+    icon: 'Keyboard',
+    color: 'from-green-500 to-emerald-600',
+    dangerLevel: 'Высокий',
+    description: 'Записывает все нажатия клавиш для кражи паролей и данных.',
+    howItWorks: 'Работает в фоновом режиме, записывая всё, что вы печатаете: пароли, номера карт, личные сообщения. Отправляет данные злоумышленникам через интернет.',
+    symptoms: [
+      'Задержки при вводе текста',
+      'Неожиданная сетевая активность',
+      'Несанкционированный доступ к аккаунтам',
+      'Странные процессы в диспетчере задач'
+    ],
+    protection: [
+      'Используйте виртуальную клавиатуру для паролей',
+      'Включайте двухфакторную аутентификацию',
+      'Проверяйте систему антикейлоггер-программами',
+      'Не вводите пароли на чужих компьютерах'
+    ],
+    realExample: 'Olympic Vision — кейлоггер использовался для кражи данных кредитных карт в отелях.'
+  },
+  {
+    id: 8,
+    name: 'Botnet (Бот-сеть)',
+    icon: 'Network',
+    color: 'from-indigo-500 to-purple-600',
+    dangerLevel: 'Высокий',
+    description: 'Превращает ваш компьютер в часть армии для кибератак.',
+    howItWorks: 'Заражённые компьютеры объединяются в сеть под контролем хакеров. Используются для DDoS-атак, рассылки спама, майнинга криптовалюты и других задач без вашего ведома.',
+    symptoms: [
+      'Интернет работает медленно',
+      'Процессор постоянно загружен',
+      'Странный исходящий трафик',
+      'IP-адрес попал в чёрные списки'
+    ],
+    protection: [
+      'Используйте надёжный антивирус',
+      'Обновляйте роутер и его прошивку',
+      'Меняйте пароли на роутере',
+      'Мониторьте сетевой трафик'
+    ],
+    realExample: 'Mirai — ботнет из IoT-устройств (камер, роутеров), использованный для крупнейших DDoS-атак в истории.'
+  }
+];
+
 export default function Index() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -395,7 +575,7 @@ export default function Index() {
         </div>
 
         <Tabs defaultValue="tests" className="space-y-8">
-          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 h-12 bg-card/50 backdrop-blur">
+          <TabsList className="grid w-full max-w-4xl mx-auto grid-cols-4 h-12 bg-card/50 backdrop-blur">
             <TabsTrigger value="tests" className="text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
               <Icon name="Brain" size={20} className="mr-2" />
               Тесты
@@ -403,6 +583,10 @@ export default function Index() {
             <TabsTrigger value="articles" className="text-base data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground">
               <Icon name="Newspaper" size={20} className="mr-2" />
               Статьи
+            </TabsTrigger>
+            <TabsTrigger value="viruses" className="text-base data-[state=active]:bg-destructive data-[state=active]:text-destructive-foreground">
+              <Icon name="Bug" size={20} className="mr-2" />
+              Вирусы
             </TabsTrigger>
             <TabsTrigger value="antivirus" className="text-base data-[state=active]:bg-accent data-[state=active]:text-accent-foreground">
               <Icon name="Download" size={20} className="mr-2" />
@@ -569,6 +753,100 @@ export default function Index() {
                         {article.readTime}
                       </Badge>
                       <Icon name="ArrowRight" size={20} className="text-primary group-hover:translate-x-2 transition-transform" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="viruses" className="animate-fade-in">
+            <div className="mb-8 text-center">
+              <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-destructive to-red-600 bg-clip-text text-transparent">
+                Энциклопедия вирусов
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+                Узнайте, как работают разные типы вредоносного ПО и как от них защититься
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {virusTypes.map((virus, index) => (
+                <Card
+                  key={virus.id}
+                  className="bg-card/80 backdrop-blur border-2 border-border hover:border-destructive/50 transition-all duration-300 animate-fade-in overflow-hidden"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
+                  <CardHeader>
+                    <div className="flex items-start gap-4">
+                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${virus.color} flex items-center justify-center flex-shrink-0`}>
+                        <Icon name={virus.icon as any} size={32} className="text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-start justify-between mb-2">
+                          <CardTitle className="text-2xl">{virus.name}</CardTitle>
+                          <Badge 
+                            variant={virus.dangerLevel === 'Критический' ? 'destructive' : 'default'}
+                            className="ml-2"
+                          >
+                            {virus.dangerLevel}
+                          </Badge>
+                        </div>
+                        <CardDescription className="text-base leading-relaxed">
+                          {virus.description}
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div>
+                      <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                        <Icon name="Info" size={20} className="text-primary" />
+                        Как работает
+                      </h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {virus.howItWorks}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                        <Icon name="AlertTriangle" size={20} className="text-destructive" />
+                        Признаки заражения
+                      </h4>
+                      <ul className="space-y-2">
+                        {virus.symptoms.map((symptom, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <Icon name="AlertCircle" size={16} className="text-destructive flex-shrink-0 mt-1" />
+                            <span className="text-muted-foreground">{symptom}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                        <Icon name="ShieldCheck" size={20} className="text-green-500" />
+                        Как защититься
+                      </h4>
+                      <ul className="space-y-2">
+                        {virus.protection.map((method, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <Icon name="CheckCircle2" size={16} className="text-green-500 flex-shrink-0 mt-1" />
+                            <span className="text-muted-foreground">{method}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="p-4 bg-muted/50 rounded-lg border border-border">
+                      <h4 className="font-bold mb-2 flex items-center gap-2">
+                        <Icon name="History" size={18} className="text-secondary" />
+                        Реальный пример
+                      </h4>
+                      <p className="text-sm text-muted-foreground italic leading-relaxed">
+                        {virus.realExample}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
